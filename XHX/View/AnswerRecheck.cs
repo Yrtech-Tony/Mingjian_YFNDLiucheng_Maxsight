@@ -1295,7 +1295,7 @@ namespace XHX.View
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            SalesContantPop scp = new SalesContantPop(CommonHandler.GetComboBoxSelectedValue(cboProjects).ToString(), btnShopCode.Text.Trim(), txtShopName.Text.Trim(), txtSubjectCode.Text.Trim(), this.UserInfoDto, "",ScoreCheck,"");
+            SalesContantPop scp = new SalesContantPop(CommonHandler.GetComboBoxSelectedValue(cboProjects).ToString(), btnShopCode.Text.Trim(), txtShopName.Text.Trim(), txtSubjectCode.Text.Trim(), this.UserInfoDto, "",ScoreCheck,"","","");
             scp.ShowDialog();
         }
 

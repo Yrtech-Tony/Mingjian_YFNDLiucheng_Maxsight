@@ -39,6 +39,7 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -49,6 +50,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.btnDel);
             this.panelControl1.Controls.Add(this.btnSave);
             this.panelControl1.Controls.Add(this.btnAddRow);
@@ -57,15 +59,15 @@
             this.panelControl1.Margin = new System.Windows.Forms.Padding(0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panelControl1.Size = new System.Drawing.Size(592, 45);
+            this.panelControl1.Size = new System.Drawing.Size(592, 42);
             this.panelControl1.TabIndex = 9;
             // 
             // btnDel
             // 
             this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDel.Location = new System.Drawing.Point(431, 15);
+            this.btnDel.Location = new System.Drawing.Point(431, 14);
             this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(75, 25);
+            this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 3;
             this.btnDel.Text = "删除行";
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
@@ -73,9 +75,9 @@
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSave.Location = new System.Drawing.Point(512, 15);
+            this.btnSave.Location = new System.Drawing.Point(512, 14);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 25);
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -83,9 +85,9 @@
             // btnAddRow
             // 
             this.btnAddRow.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAddRow.Location = new System.Drawing.Point(350, 15);
+            this.btnAddRow.Location = new System.Drawing.Point(350, 14);
             this.btnAddRow.Name = "btnAddRow";
-            this.btnAddRow.Size = new System.Drawing.Size(75, 25);
+            this.btnAddRow.Size = new System.Drawing.Size(75, 23);
             this.btnAddRow.TabIndex = 0;
             this.btnAddRow.Text = "添加行";
             this.btnAddRow.Click += new System.EventHandler(this.btnAddRow_Click);
@@ -94,11 +96,11 @@
             // 
             this.panelControl2.Controls.Add(this.grcInspectionStandard);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 45);
+            this.panelControl2.Location = new System.Drawing.Point(0, 42);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(0);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panelControl2.Size = new System.Drawing.Size(592, 521);
+            this.panelControl2.Size = new System.Drawing.Size(592, 480);
             this.panelControl2.TabIndex = 10;
             // 
             // grcInspectionStandard
@@ -107,7 +109,7 @@
             this.grcInspectionStandard.Location = new System.Drawing.Point(2, 2);
             this.grcInspectionStandard.MainView = this.grvInpectionStandard;
             this.grcInspectionStandard.Name = "grcInspectionStandard";
-            this.grcInspectionStandard.Size = new System.Drawing.Size(588, 517);
+            this.grcInspectionStandard.Size = new System.Drawing.Size(588, 476);
             this.grcInspectionStandard.TabIndex = 0;
             this.grcInspectionStandard.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvInpectionStandard});
@@ -159,11 +161,21 @@
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 1;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.simpleButton1.Location = new System.Drawing.Point(244, 13);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(103, 23);
+            this.simpleButton1.TabIndex = 5;
+            this.simpleButton1.Text = "生成失分说明";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // InspectionStandard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 566);
+            this.ClientSize = new System.Drawing.Size(592, 522);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Name = "InspectionStandard";
@@ -192,5 +204,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gcCode;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

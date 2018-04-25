@@ -3,6 +3,23 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetAllProject">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="SearchRateAllByProjectCode">
         <s:complexType>
           <s:sequence>
@@ -2383,6 +2400,17 @@
       <s:element name="SaveLossFormResponse">
         <s:complexType />
       </s:element>
+      <s:element name="CopyLossFromStandard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lossCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyLossFromStandardResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="SearchChapter">
         <s:complexType>
           <s:sequence>
@@ -4139,23 +4167,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetAllProject">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetAllProjectResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllProjectResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
     <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
       <s:simpleType name="char">
@@ -4163,6 +4174,12 @@
       </s:simpleType>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="GetAllProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllProject" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllProjectResponse" />
+  </wsdl:message>
   <wsdl:message name="SearchRateAllByProjectCodeSoapIn">
     <wsdl:part name="parameters" element="tns:SearchRateAllByProjectCode" />
   </wsdl:message>
@@ -4943,6 +4960,12 @@
   <wsdl:message name="SaveLossFormSoapOut">
     <wsdl:part name="parameters" element="tns:SaveLossFormResponse" />
   </wsdl:message>
+  <wsdl:message name="CopyLossFromStandardSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyLossFromStandard" />
+  </wsdl:message>
+  <wsdl:message name="CopyLossFromStandardSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyLossFromStandardResponse" />
+  </wsdl:message>
   <wsdl:message name="SearchChapterSoapIn">
     <wsdl:part name="parameters" element="tns:SearchChapter" />
   </wsdl:message>
@@ -5507,13 +5530,11 @@
   <wsdl:message name="GetAllAreaSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllAreaResponse" />
   </wsdl:message>
-  <wsdl:message name="GetAllProjectSoapIn">
-    <wsdl:part name="parameters" element="tns:GetAllProject" />
-  </wsdl:message>
-  <wsdl:message name="GetAllProjectSoapOut">
-    <wsdl:part name="parameters" element="tns:GetAllProjectResponse" />
-  </wsdl:message>
   <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="GetAllProject">
+      <wsdl:input message="tns:GetAllProjectSoapIn" />
+      <wsdl:output message="tns:GetAllProjectSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="SearchRateAllByProjectCode">
       <wsdl:input message="tns:SearchRateAllByProjectCodeSoapIn" />
       <wsdl:output message="tns:SearchRateAllByProjectCodeSoapOut" />
@@ -6034,6 +6055,10 @@
       <wsdl:input message="tns:SaveLossFormSoapIn" />
       <wsdl:output message="tns:SaveLossFormSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="CopyLossFromStandard">
+      <wsdl:input message="tns:CopyLossFromStandardSoapIn" />
+      <wsdl:output message="tns:CopyLossFromStandardSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="SearchChapter">
       <wsdl:input message="tns:SearchChapterSoapIn" />
       <wsdl:output message="tns:SearchChapterSoapOut" />
@@ -6410,13 +6435,18 @@
       <wsdl:input message="tns:GetAllAreaSoapIn" />
       <wsdl:output message="tns:GetAllAreaSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetAllProject">
-      <wsdl:input message="tns:GetAllProjectSoapIn" />
-      <wsdl:output message="tns:GetAllProjectSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllProject">
+      <soap:operation soapAction="http://tempuri.org/GetAllProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchRateAllByProjectCode">
       <soap:operation soapAction="http://tempuri.org/SearchRateAllByProjectCode" style="document" />
       <wsdl:input>
@@ -7587,6 +7617,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CopyLossFromStandard">
+      <soap:operation soapAction="http://tempuri.org/CopyLossFromStandard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchChapter">
       <soap:operation soapAction="http://tempuri.org/SearchChapter" style="document" />
       <wsdl:input>
@@ -8433,18 +8472,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAllProject">
-      <soap:operation soapAction="http://tempuri.org/GetAllProject" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllProject">
+      <soap12:operation soapAction="http://tempuri.org/GetAllProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchRateAllByProjectCode">
       <soap12:operation soapAction="http://tempuri.org/SearchRateAllByProjectCode" style="document" />
       <wsdl:input>
@@ -9615,6 +9654,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CopyLossFromStandard">
+      <soap12:operation soapAction="http://tempuri.org/CopyLossFromStandard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SearchChapter">
       <soap12:operation soapAction="http://tempuri.org/SearchChapter" style="document" />
       <wsdl:input>
@@ -10454,15 +10502,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllArea">
       <soap12:operation soapAction="http://tempuri.org/GetAllArea" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllProject">
-      <soap12:operation soapAction="http://tempuri.org/GetAllProject" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

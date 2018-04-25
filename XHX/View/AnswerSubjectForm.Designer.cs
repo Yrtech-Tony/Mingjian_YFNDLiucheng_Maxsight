@@ -279,6 +279,7 @@
             this.chkMember.TabIndex = 98;
             this.chkMember.Text = "接待人员";
             this.chkMember.UseVisualStyleBackColor = true;
+            this.chkMember.Visible = false;
             // 
             // txtPhotoFullScore
             // 
@@ -294,6 +295,7 @@
             this.txtPhotoFullScore.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPhotoFullScore.Size = new System.Drawing.Size(37, 21);
             this.txtPhotoFullScore.TabIndex = 97;
+            this.txtPhotoFullScore.Visible = false;
             // 
             // txtPhotLowestScore
             // 
@@ -309,6 +311,7 @@
             this.txtPhotLowestScore.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPhotLowestScore.Size = new System.Drawing.Size(43, 21);
             this.txtPhotLowestScore.TabIndex = 96;
+            this.txtPhotLowestScore.Visible = false;
             // 
             // txtFullScore
             // 
@@ -354,6 +357,7 @@
             this.txtPhotoScore.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtPhotoScore.Size = new System.Drawing.Size(44, 21);
             this.txtPhotoScore.TabIndex = 93;
+            this.txtPhotoScore.Visible = false;
             this.txtPhotoScore.TextChanged += new System.EventHandler(this.txtPhotoScore_TextChanged);
             // 
             // simpleButton2
@@ -376,6 +380,7 @@
             this.labelControl12.Size = new System.Drawing.Size(60, 35);
             this.labelControl12.TabIndex = 91;
             this.labelControl12.Text = "模拟得分：";
+            this.labelControl12.Visible = false;
             // 
             // labelControl15
             // 
@@ -387,6 +392,7 @@
             this.labelControl15.Size = new System.Drawing.Size(60, 35);
             this.labelControl15.TabIndex = 90;
             this.labelControl15.Text = "照片得分：";
+            this.labelControl15.Visible = false;
             // 
             // txtSimutionScore
             // 
@@ -402,6 +408,7 @@
             this.txtSimutionScore.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtSimutionScore.Size = new System.Drawing.Size(65, 21);
             this.txtSimutionScore.TabIndex = 89;
+            this.txtSimutionScore.Visible = false;
             this.txtSimutionScore.TextChanged += new System.EventHandler(this.txtSimutionScore_TextChanged);
             // 
             // chkNotinvolved
@@ -413,6 +420,7 @@
             this.chkNotinvolved.TabIndex = 82;
             this.chkNotinvolved.Text = "不涉及";
             this.chkNotinvolved.UseVisualStyleBackColor = true;
+            this.chkNotinvolved.Visible = false;
             this.chkNotinvolved.CheckedChanged += new System.EventHandler(this.chkNotinvolved_CheckedChanged);
             // 
             // chkLastNotinvolved

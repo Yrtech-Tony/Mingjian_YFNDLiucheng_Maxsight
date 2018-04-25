@@ -151,7 +151,7 @@ namespace XHX
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "µÇÂ¼BENZ";
+            this.Text = "µÇÂ¼Ó¢·ÆÄáµÏÁ÷³Ì";
             ((System.ComponentModel.ISupportInitialize)(this.txtUserID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPWD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

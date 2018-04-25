@@ -971,7 +971,14 @@ public class Service : System.Web.Services.WebService
         DataSet ds = CommonHandler.query(sql);
     }
     #endregion
-
+    #region 从检查标准生成失分说明
+    [WebMethod]
+    public void CopyLossFromStandard(string lossCode, string userId)
+    {
+        string sql = string.Format("EXEC [up_DSAT_LossResult_CopyFromInstandard] '{0}','{1}' ", lossCode, userId);
+        DataSet ds = CommonHandler.query(sql);
+    }
+    #endregion
     #endregion
     #region 章节
     #region 查询章节信息

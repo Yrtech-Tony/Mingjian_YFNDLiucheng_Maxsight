@@ -184,5 +184,14 @@ namespace XHX.View
                 e.Appearance.BackColor = Color.Gray;
             }
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            if (CommonHandler.ShowMessage(MessageType.Confirm, "确定要生成吗？") == DialogResult.Yes)
+            {
+                service.CopyLossFromStandard(this.projectCode, "sysadmin");
+            }
+            CommonHandler.ShowMessage(MessageType.Information, "生成完毕");
+        }
     }
 }

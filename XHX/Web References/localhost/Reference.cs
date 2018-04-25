@@ -32,6 +32,8 @@ namespace XHX.localhost {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PictureDto[]))]
     public partial class Service : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback GetAllProjectOperationCompleted;
+        
         private System.Threading.SendOrPostCallback SearchRateAllByProjectCodeOperationCompleted;
         
         private System.Threading.SendOrPostCallback SearchRateAllByAreaOperationCompleted;
@@ -292,6 +294,8 @@ namespace XHX.localhost {
         
         private System.Threading.SendOrPostCallback SaveLossFormOperationCompleted;
         
+        private System.Threading.SendOrPostCallback CopyLossFromStandardOperationCompleted;
+        
         private System.Threading.SendOrPostCallback SearchChapterOperationCompleted;
         
         private System.Threading.SendOrPostCallback SaveChapterOperationCompleted;
@@ -480,8 +484,6 @@ namespace XHX.localhost {
         
         private System.Threading.SendOrPostCallback GetAllAreaOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetAllProjectOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -519,6 +521,9 @@ namespace XHX.localhost {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event GetAllProjectCompletedEventHandler GetAllProjectCompleted;
         
         /// <remarks/>
         public event SearchRateAllByProjectCodeCompletedEventHandler SearchRateAllByProjectCodeCompleted;
@@ -911,6 +916,9 @@ namespace XHX.localhost {
         public event SaveLossFormCompletedEventHandler SaveLossFormCompleted;
         
         /// <remarks/>
+        public event CopyLossFromStandardCompletedEventHandler CopyLossFromStandardCompleted;
+        
+        /// <remarks/>
         public event SearchChapterCompletedEventHandler SearchChapterCompleted;
         
         /// <remarks/>
@@ -1193,7 +1201,31 @@ namespace XHX.localhost {
         public event GetAllAreaCompletedEventHandler GetAllAreaCompleted;
         
         /// <remarks/>
-        public event GetAllProjectCompletedEventHandler GetAllProjectCompleted;
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllProject", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetAllProject() {
+            object[] results = this.Invoke("GetAllProject", new object[0]);
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllProjectAsync() {
+            this.GetAllProjectAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllProjectAsync(object userState) {
+            if ((this.GetAllProjectOperationCompleted == null)) {
+                this.GetAllProjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllProjectOperationCompleted);
+            }
+            this.InvokeAsync("GetAllProject", new object[0], this.GetAllProjectOperationCompleted, userState);
+        }
+        
+        private void OnGetAllProjectOperationCompleted(object arg) {
+            if ((this.GetAllProjectCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllProjectCompleted(this, new GetAllProjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SearchRateAllByProjectCode", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -5490,6 +5522,36 @@ namespace XHX.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CopyLossFromStandard", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void CopyLossFromStandard(string lossCode, string userId) {
+            this.Invoke("CopyLossFromStandard", new object[] {
+                        lossCode,
+                        userId});
+        }
+        
+        /// <remarks/>
+        public void CopyLossFromStandardAsync(string lossCode, string userId) {
+            this.CopyLossFromStandardAsync(lossCode, userId, null);
+        }
+        
+        /// <remarks/>
+        public void CopyLossFromStandardAsync(string lossCode, string userId, object userState) {
+            if ((this.CopyLossFromStandardOperationCompleted == null)) {
+                this.CopyLossFromStandardOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCopyLossFromStandardOperationCompleted);
+            }
+            this.InvokeAsync("CopyLossFromStandard", new object[] {
+                        lossCode,
+                        userId}, this.CopyLossFromStandardOperationCompleted, userState);
+        }
+        
+        private void OnCopyLossFromStandardOperationCompleted(object arg) {
+            if ((this.CopyLossFromStandardCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CopyLossFromStandardCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SearchChapter", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet SearchChapter(string projectCode, string chapterCode) {
             object[] results = this.Invoke("SearchChapter", new object[] {
@@ -8729,33 +8791,6 @@ namespace XHX.localhost {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllProject", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet GetAllProject() {
-            object[] results = this.Invoke("GetAllProject", new object[0]);
-            return ((System.Data.DataSet)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetAllProjectAsync() {
-            this.GetAllProjectAsync(null);
-        }
-        
-        /// <remarks/>
-        public void GetAllProjectAsync(object userState) {
-            if ((this.GetAllProjectOperationCompleted == null)) {
-                this.GetAllProjectOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllProjectOperationCompleted);
-            }
-            this.InvokeAsync("GetAllProject", new object[0], this.GetAllProjectOperationCompleted, userState);
-        }
-        
-        private void OnGetAllProjectOperationCompleted(object arg) {
-            if ((this.GetAllProjectCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetAllProjectCompleted(this, new GetAllProjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -8857,6 +8892,32 @@ namespace XHX.localhost {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public abstract partial class MarshalByRefObject {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.8825")]
+    public delegate void GetAllProjectCompletedEventHandler(object sender, GetAllProjectCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.8825")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
     }
     
     /// <remarks/>
@@ -11295,6 +11356,10 @@ namespace XHX.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.8825")]
+    public delegate void CopyLossFromStandardCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.8825")]
     public delegate void SearchChapterCompletedEventHandler(object sender, SearchChapterCompletedEventArgs e);
     
     /// <remarks/>
@@ -12800,32 +12865,6 @@ namespace XHX.localhost {
         private object[] results;
         
         internal GetAllAreaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public System.Data.DataSet Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((System.Data.DataSet)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.8825")]
-    public delegate void GetAllProjectCompletedEventHandler(object sender, GetAllProjectCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.8825")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetAllProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetAllProjectCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -41,13 +41,14 @@ namespace XHX.View
         private bool _scoreCheck = true;
         private string _memberType = "";
         // private decimal _avgScore = 0;
-        public SalesContantPop(string projectCode, string shopCode, string shopName, string subjectCode, UserInfoDto user, string pageName, bool scoreChk, string memberType)
+        public SalesContantPop(string projectCode, string shopCode, string shopName, string subjectCode, UserInfoDto user, string pageName, bool scoreChk, string memberType, string fullScore, string lowestScore)
         {
             InitializeComponent();
             BindComBox.BindProject(cboProject);
             CommonHandler.SetComboBoxSelectedValue(cboProject, projectCode.Trim());
             txtShopName.Text = "(" + shopCode.Trim() + ")" + shopName.Trim();
             txtSubjectCode.Text = subjectCode.Trim();
+            txtFullScore.Text = fullScore;
             _shopCode = shopCode;
             _userId = user.UserID;
             _scoreCheck = scoreChk;
@@ -111,7 +112,7 @@ namespace XHX.View
                 {
                     btnSave.Enabled = false;
                     btnSaveLossDesc.Enabled = false;
-                
+
                 }
             }
 
@@ -165,20 +166,20 @@ namespace XHX.View
                     if (ds.Tables[0].Rows[i]["Score"] == DBNull.Value)
                     {
                         chapter.Score = null;
-                        chapter.Notinvolved = false;
+                        //chapter.Notinvolved = false;
                     }
                     else
                     {
-                        if (Convert.ToDecimal(ds.Tables[0].Rows[i]["Score"]) == 9999)
-                        {
-                            chapter.Notinvolved = true;
-                            chapter.Score = null;
-                        }
-                        else
-                        {
+                        //if (Convert.ToDecimal(ds.Tables[0].Rows[i]["Score"]) == 9999)
+                        //{
+                        //    chapter.Notinvolved = true;
+                        //    chapter.Score = null;
+                        //}
+                        //else
+                        //{
                             chapter.Score = Convert.ToDecimal(ds.Tables[0].Rows[i]["Score"]);
                             chapter.Notinvolved = false;
-                        }
+                        //}
                     }
                     chapter.LossDesc = Convert.ToString(ds.Tables[0].Rows[i]["LossDesc"]);
                     sourcechapterList.Add(chapter);
@@ -216,14 +217,6 @@ namespace XHX.View
         }
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            // List<ChapterDto> chapterList = new List<ChapterDto>(); ;
-            //for (int i = 0; i < grvChapter.RowCount; i++)
-            //{
-            //    if (grvChapter.GetRowCellValue(i, "CheckMarkSelection").ToString() == "True")
-            //    {
-            //        chapterList.Add(grvChapter.GetRow(i) as ChapterDto);
-            //    }
-            //}
             this.Close();
         }
         private void ChapterPop_FormClosing(object sender, FormClosingEventArgs e)
@@ -265,76 +258,20 @@ namespace XHX.View
                 grvSaleContant.CloseEditor();
                 grvSaleContant.UpdateCurrentRow();
                 string projectCode = CommonHandler.GetComboBoxSelectedValue(cboProject).ToString();
-                foreach (SalesConsultantDto dto in grcSaleContant.DataSource as List<SalesConsultantDto>)
-                {
-                    //if (projectCode == "MB04" || projectCode == "MBH04" || projectCode == "MB1601" || projectCode == "MBH1601"
-                    //    || projectCode == "MB1602" || projectCode == "MBH1602")
-                    //{
-                        if (dto.SalesConsultant.Contains("试驾专员")
-                            || dto.SalesConsultant.Contains("试乘试驾")
-                            || dto.SalesConsultant.Contains("金融专员")
-                            )
-                        {
-                            _scoreCheck = false;
-                            break;
-                        }
-                    //}
-                }
-                foreach (SalesConsultantDto dto in grcSaleContant.DataSource as List<SalesConsultantDto>)
-                {
-                    if ((projectCode == "MB1603"))
-                    {
-                        if ((dto.SalesConsultant.Contains("E") || dto.SalesConsultant.Contains("e"))
-                                && dto.Score == null
-                                && (txtSubjectCode.Text.Trim() == "D5" || txtSubjectCode.Text.Trim() == "D6"))
-                        {
-                            CommonHandler.ShowMessage(MessageType.Information, "含有E必须填写分数");
-                            return;
-                        }
-                        if (!(dto.SalesConsultant.Contains("E") || dto.SalesConsultant.Contains("e"))
-                            && dto.Score != null
-                            && (txtSubjectCode.Text.Trim() == "D5" || txtSubjectCode.Text.Trim() == "D6"))
-                        {
-                            CommonHandler.ShowMessage(MessageType.Information, "不含E不需要填写分数");
-                            return;
-                        }
-                    }
-                    if ((projectCode == "MB1604"))
-                    {
-                        if ((dto.SalesConsultant.Contains("E") || dto.SalesConsultant.Contains("e"))
-                                && dto.Score == null
-                                && (txtSubjectCode.Text.Trim() == "D5" || txtSubjectCode.Text.Trim() == "D6"
-                                || txtSubjectCode.Text.Trim() == "E11"))
-                        {
-                            CommonHandler.ShowMessage(MessageType.Information, "含有E必须填写分数");
-                            return;
-                        }
-                        if (!(dto.SalesConsultant.Contains("E") || dto.SalesConsultant.Contains("e"))
-                            && dto.Score != null
-                            && (txtSubjectCode.Text.Trim() == "D5" || txtSubjectCode.Text.Trim() == "D6"
-                            || txtSubjectCode.Text.Trim() == "E11"))
-                        {
-                            CommonHandler.ShowMessage(MessageType.Information, "不含E不需要填写分数");
-                            return;
-                        }
-                    }
-                    if (dto.SalesConsultant.Contains("试驾专员")
-                       || dto.SalesConsultant.Contains("试乘试驾")
-                       || dto.SalesConsultant.Contains("金融专员")
-                       )
-                    {
-                        _scoreCheck = false;
-                        break;
-                    }
-                    else
-                    {
-                        if ((dto.Score == null) && _scoreCheck)
-                        {
-                            CommonHandler.ShowMessage(MessageType.Information, "请填写分数");
-                            return;
-                        }
-                    }
 
+                foreach (SalesConsultantDto dto in grcSaleContant.DataSource as List<SalesConsultantDto>)
+                {
+
+                    if ((dto.Score == null) && _scoreCheck)
+                    {
+                        CommonHandler.ShowMessage(MessageType.Information, "请填写分数");
+                        return;
+                    }
+                    if (Convert.ToDecimal(dto.Score) > Convert.ToDecimal(txtFullScore.Text)  && dto.Score != Convert.ToDecimal(9999))
+                    {
+                        CommonHandler.ShowMessage(MessageType.Information, "分数超过最高分");
+                        return;
+                    }
                 }
 
                 if (CommonHandler.ShowMessage(MessageType.Confirm, "确定要保存吗？") == DialogResult.Yes)
@@ -342,21 +279,8 @@ namespace XHX.View
                     foreach (SalesConsultantDto dto in grcSaleContant.DataSource as List<SalesConsultantDto>)
                     {
                         string score = "";
-                        if (dto.Notinvolved == true)
-                        {
-                            score = "9999";
-                        }
-                        else
-                        {
-                            if (dto.Score == null)
-                            {
-                                score = null;
-                            }
-                            else
-                            {
-                                score = Convert.ToString(dto.Score);
-                            }
-                        }
+
+                        score = Convert.ToString(dto.Score);
                         service.SaveSalesConsultant(CommonHandler.GetComboBoxSelectedValue(cboProject).ToString(), _shopCode, txtSubjectCode.Text.Trim(), Convert.ToString(dto.SeqNO),
                             dto.SalesConsultant, score, "", _userId, dto.StatusType, _memberType);
                     }
@@ -510,28 +434,6 @@ namespace XHX.View
             txtLossDesc.Text = lossDesc[0] + lossDesc[1] + lossDesc[2];
         }
 
-        private void grvSaleContant_ShowingEditor(object sender, CancelEventArgs e)
-        {
-            SalesConsultantDto sales = grvSaleContant.GetFocusedRow() as SalesConsultantDto;
-            if (sales.Notinvolved == true)
-            {
-                grvSaleContant.SetRowCellValue(grvSaleContant.FocusedRowHandle, gcScore, "");
-                if (grvSaleContant.FocusedColumn == gcScore)
-                {
-                    CommonHandler.ShowMessage(MessageType.Information, "如果需要修改，请先去掉勾选");
-                    e.Cancel = true;
-                }
-                else
-                {
-                    e.Cancel = false;
-                }
-
-            }
-            else
-            {
-                e.Cancel = false;
-            }
-        }
     }
 
 }

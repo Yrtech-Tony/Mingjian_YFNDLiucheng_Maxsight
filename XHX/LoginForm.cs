@@ -227,7 +227,7 @@ namespace XHX
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("iexplore.exe", "http://123.57.229.128/BENZClient/publish.htm");
+            System.Diagnostics.Process.Start("iexplore.exe", "http://123.57.229.128/yfndliuchengClient/publish.htm");
         }
     }
 }

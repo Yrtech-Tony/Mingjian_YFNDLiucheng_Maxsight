@@ -1994,7 +1994,7 @@ namespace XHX.View
                 memberType = "02";
             }
 
-            SalesContantPop scp = new SalesContantPop(CommonHandler.GetComboBoxSelectedValue(cboProjects).ToString(), btnShopCode.Text.Trim(), txtShopName.Text.Trim(), txtSubjectCode.Text.Trim(), this.UserInfoDto, "AnswerSubject", ScoreCheck, memberType);
+            SalesContantPop scp = new SalesContantPop(CommonHandler.GetComboBoxSelectedValue(cboProjects).ToString(), btnShopCode.Text.Trim(), txtShopName.Text.Trim(), txtSubjectCode.Text.Trim(), this.UserInfoDto, "AnswerSubject", ScoreCheck, memberType,txtFullScore.Text,txtLowestScore.Text);
             scp.ShowDialog();
             if (ScoreCheck)
             {

@@ -37,6 +37,8 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.grdShop = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.txtFullScore = new DevExpress.XtraEditors.TextEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnDeleteRow = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddRow = new DevExpress.XtraEditors.SimpleButton();
@@ -75,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboProject.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdShop)).BeginInit();
             this.grdShop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFullScore.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcSaleContant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvSaleContant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScore)).BeginInit();
@@ -171,6 +174,8 @@
             // 
             // grdShop
             // 
+            this.grdShop.Controls.Add(this.labelControl7);
+            this.grdShop.Controls.Add(this.txtFullScore);
             this.grdShop.Controls.Add(this.btnSave);
             this.grdShop.Controls.Add(this.btnDeleteRow);
             this.grdShop.Controls.Add(this.btnAddRow);
@@ -180,6 +185,29 @@
             this.grdShop.Name = "grdShop";
             this.grdShop.Size = new System.Drawing.Size(1081, 42);
             this.grdShop.TabIndex = 84;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(18, 17);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(36, 14);
+            this.labelControl7.TabIndex = 16;
+            this.labelControl7.Text = "最高分";
+            // 
+            // txtFullScore
+            // 
+            this.txtFullScore.Enabled = false;
+            this.txtFullScore.Location = new System.Drawing.Point(60, 14);
+            this.txtFullScore.Name = "txtFullScore";
+            this.txtFullScore.Properties.DisplayFormat.FormatString = "######0.00";
+            this.txtFullScore.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtFullScore.Properties.EditFormat.FormatString = "######0.00";
+            this.txtFullScore.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtFullScore.Properties.Mask.EditMask = "######0.00";
+            this.txtFullScore.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtFullScore.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtFullScore.Size = new System.Drawing.Size(47, 21);
+            this.txtFullScore.TabIndex = 91;
             // 
             // btnSave
             // 
@@ -255,7 +283,6 @@
             this.grvSaleContant.Name = "grvSaleContant";
             this.grvSaleContant.OptionsView.ColumnAutoWidth = false;
             this.grvSaleContant.OptionsView.ShowGroupPanel = false;
-            this.grvSaleContant.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grvSaleContant_ShowingEditor);
             // 
             // gridColumn2
             // 
@@ -538,6 +565,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboProject.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdShop)).EndInit();
             this.grdShop.ResumeLayout(false);
+            this.grdShop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFullScore.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcSaleContant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvSaleContant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScore)).EndInit();
@@ -599,5 +628,7 @@
         private DevExpress.XtraEditors.SimpleButton btnDeleteLossRow;
         private DevExpress.XtraEditors.SimpleButton btnSaveLossDesc;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.TextEdit txtFullScore;
     }
 }
