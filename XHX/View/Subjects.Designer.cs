@@ -315,6 +315,7 @@
             this.grvProject.Name = "grvProject";
             this.grvProject.OptionsView.ColumnAutoWidth = false;
             this.grvProject.OptionsView.ShowGroupPanel = false;
+            this.grvProject.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grvProject_ShowingEditor);
             this.grvProject.DoubleClick += new System.EventHandler(this.grvProject_DoubleClick);
             // 
             // gridColumn3

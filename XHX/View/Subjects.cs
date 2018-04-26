@@ -863,5 +863,18 @@ namespace XHX.View
                 CommonHandler.ExcelExportByExporter(grvSubject);
         }
 
+        private void grvProject_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            ProjectDto dto = grvProject.GetFocusedRow() as ProjectDto;
+            if (dto.StatusType != 'I')
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
+        }
+
     }
 }
