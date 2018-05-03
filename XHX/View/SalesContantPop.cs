@@ -165,7 +165,15 @@ namespace XHX.View
                     chapter.SalesConsultant = Convert.ToString(ds.Tables[0].Rows[i]["SalesConsultant"]);
                     if (ds.Tables[0].Rows[i]["Score"] == DBNull.Value)
                     {
-                        chapter.Score = null;
+                        if (string.IsNullOrEmpty(txtFullScore.Text))
+                        {
+                            chapter.Score = null;
+                        }
+                        else
+                        {
+                            chapter.Score = Convert.ToDecimal(txtFullScore.Text);
+                        }
+
                         //chapter.Notinvolved = false;
                     }
                     else
@@ -177,8 +185,8 @@ namespace XHX.View
                         //}
                         //else
                         //{
-                            chapter.Score = Convert.ToDecimal(ds.Tables[0].Rows[i]["Score"]);
-                            chapter.Notinvolved = false;
+                        chapter.Score = Convert.ToDecimal(ds.Tables[0].Rows[i]["Score"]);
+                        chapter.Notinvolved = false;
                         //}
                     }
                     chapter.LossDesc = Convert.ToString(ds.Tables[0].Rows[i]["LossDesc"]);
@@ -249,6 +257,7 @@ namespace XHX.View
                 }
                 loss.SeqNO = seqNO + 1;
             }
+            loss.Score = Convert.ToDecimal(txtFullScore.Text);
             dataHandler.AddRow(loss);
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -267,7 +276,7 @@ namespace XHX.View
                         CommonHandler.ShowMessage(MessageType.Information, "请填写分数");
                         return;
                     }
-                    if (Convert.ToDecimal(dto.Score) > Convert.ToDecimal(txtFullScore.Text)  && dto.Score != Convert.ToDecimal(9999))
+                    if (Convert.ToDecimal(dto.Score) > Convert.ToDecimal(txtFullScore.Text) && dto.Score != Convert.ToDecimal(9999))
                     {
                         CommonHandler.ShowMessage(MessageType.Information, "分数超过最高分");
                         return;
