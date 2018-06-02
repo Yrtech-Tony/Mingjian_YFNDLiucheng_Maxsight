@@ -240,13 +240,13 @@ namespace XHX.View
         {
             SalesConsultantDto loss = new SalesConsultantDto();
             List<SalesConsultantDto> inspectionList = grcSaleContant.DataSource as List<SalesConsultantDto>;
-            DataSet ds = service.SearchSalesConsultanMaxSeqNO(CommonHandler.GetComboBoxSelectedValue(cboProject).ToString(), _shopCode);
+           // DataSet ds = service.SearchSalesConsultanMaxSeqNO(CommonHandler.GetComboBoxSelectedValue(cboProject).ToString(), _shopCode);
             int seqNO = 0;
-            if (ds != null && ds.Tables[0].Rows.Count > 0)
-            {
-                seqNO = Convert.ToInt32(ds.Tables[0].Rows[0]["SeqNO"]);
-            }
-            if (seqNO == 0)
+            //if (ds != null && ds.Tables[0].Rows.Count > 0)
+            //{
+            //    seqNO = Convert.ToInt32(ds.Tables[0].Rows[0]["SeqNO"]);
+            //}
+            if (inspectionList.Count == 0)
             {
                 loss.SeqNO = 1;
             }
